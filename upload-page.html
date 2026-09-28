@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload-Page</title>
+    <link rel="stylesheet" href="master.css" />
+</head>
+
+<body>
+    <div class="contener">
+        <div class="head logo">
+            <p>Scoring</p>
+            <span>Resume</span>
+        </div>
+        <div class="header">
+            <h1>قيم سيرتك الذاتية تلقائيا ووفر وقت التوظيف</h1>
+            <p>
+                .ارفع سيرتك الذاتية واحدة أو مجموعة , واحصل على تحليل دقيق وقابل
+                للتنفيذ فى ثوان
+            </p>
+        </div>
+
+        <section class="section1">
+            <div class="upload-container">
+                <div class="drop-zone" id="dropZone" onclick="document.getElementById('file-input').click()">
+                    <div class="upload-icon">☁️</div>
+                    <h3>اسحب وأفلت ملفات السيرة الذاتية هنا</h3>
+                    <p>أو انقر لاختيارها من جهازك</p>
+                    <div class="file-types">
+                        يدعم ملفات PDF و DOCX. الحجم الأقصى: 10 ميجابايت لكل ملف.
+                    </div>
+                    <input type="file" id="file-input" multiple accept=".pdf,.docx,img" />
+                </div>
+
+                <div class="file-list" id="fileList"></div>
+
+                <div class="actions">
+                    <button class="btn btn-secondary" onclick="document.getElementById('file-input').click()">
+                        إضافة المزيد من الملفات
+                    </button>
+                    <button class="btn btn-primary" onclick="window.open('score-page.html', '_blank')">
+                        ابدأ التحليل
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <hr />
+
+        <section class="section2">
+            <div class="part1 part">
+                <div>
+                    <img src="Imgs/upload.png" alt="" />
+                </div>
+                <div class="text">
+                    <p>.1</p>
+                    <h2>ارفع الملفات</h2>
+                    <p>قم برفع الملفات من خلال السحب او اختيار ملف</p>
+                </div>
+            </div>
+            <div class="part2 part">
+                <div>
+                    <img src="Imgs/analysis.png" alt="" />
+                </div>
+                <div class="text">
+                    <p>.2</p>
+                    <h2>التحليل التلقائى</h2>
+                    <p>تحليل السيرة الذاتيه والفحص من قبل الذكاء الاصطناعى</p>
+                </div>
+            </div>
+            <div class="part3 part">
+                <div>
+                    <img src="Imgs/test-results.png" alt="" />
+                </div>
+                <div class="text">
+                    <p>.3</p>
+                    <h2>استعراض النتائج</h2>
+                    <p>استعراض نتائج التحليل والتقيم</p>
+                </div>
+            </div>
+        </section>
+
+        <hr />
+
+        <footer class="foot">
+            <div class="links">
+                <div>
+                    <a href="http://" target="_blank">عن الموقع</a>
+                    <a href="http://" target="_blank">سياسة الخصوصية</a>
+                    <a href="http://" target="_blank">الشروط والاحكام</a>
+                </div>
+                <div>
+                    <a href="http://" target="_blank">1231213132</a>
+                    <a href="http://" target="_blank">rotjwoer.com</a>
+                </div>
+            </div>
+            <div>
+                <div class="logo">
+                    <p>Scoring</p>
+                    <span>Resume</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById("dropZone");
+        const fileInput = document.getElementById("file-input");
+        const fileList = document.getElementById("fileList");
+
+        // 1. منع السلوك الافتراضي للمتصفح (عشان الملف ميتفتحش في التاب بدل ما يترفع)
+        ["dragenter", "dragover", "dragleave", "drop"].forEach((eventName) => {
+            dropZone.addEventListener(
+                eventName,
+                (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                },
+                false,
+            );
+        });
+
+        // 2. تغيير شكل البرواز عند سحب الملف فوق المنطقة (تأثير بصري)
+        ["dragenter", "dragover"].forEach((eventName) => {
+            dropZone.addEventListener(
+                eventName,
+                () => {
+                    dropZone.style.borderColor = "#1c3b6a";
+                    dropZone.style.backgroundColor = "#e9f0fc";
+                },
+                false,
+            );
+        });
+
+        ["dragleave", "drop"].forEach((eventName) => {
+            dropZone.addEventListener(
+                eventName,
+                () => {
+                    dropZone.style.borderColor = "#a0b5d8";
+                    dropZone.style.backgroundColor = "#f4f8ff";
+                },
+                false,
+            );
+        });
+
+        // 3. معالجة الملفات عند "الإفلات" (Drop)
+        dropZone.addEventListener("drop", (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        });
+
+        // 4. معالجة الملفات عند "الاختيار العادي" (Click)
+        fileInput.addEventListener("change", function () {
+            handleFiles(this.files);
+        });
+
+        // دالة مشتركة لعرض الملفات في القائمة
+        function handleFiles(files) {
+            Array.from(files).forEach((file) => {
+                // التحقق من نوع الملف (اختياري لكن مفيد)
+                if (file.type === "application/pdf" || file.name.endsWith(".docx")) {
+                    const fileSizeMB = (file.size / (1024 * 1024)).toFixed(1);
+
+                    const fileHTML = `
+                <div class="file-item">
+                    <div class="file-info">
+                        <span class="file-icon">📄</span> 
+                        ${file.name}
+                    </div>
+                    <div class="file-meta">
+                        <button class="delete-btn" onclick="this.closest('.file-item').remove()">✕</button>
+                        <span>${fileSizeMB} MB</span>
+                    </div>
+                </div>
+            `;
+                    fileList.insertAdjacentHTML("beforeend", fileHTML);
+                } else {
+                    alert("عفواً، نرجو رفع ملفات PDF أو DOCX فقط.");
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,294 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+span {
+  font:
+    bold 25px Arial,
+    Helvetica,
+    sans-serif;
+  color: #0f4383;
+}
+
+.contener {
+  width: 100%;
+  height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.section1 {
+  width: 100%;
+  height: 100%;
+  background-color: #e1e1e1;
+  border-radius: 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-container {
+  background-color: #ffffff;
+  width: 100%;
+  height: 90%;
+  min-height: 90%;
+  max-width: 650px;
+  padding: 30px;
+  border-radius: 30px;
+}
+
+/* منطقة السحب والإفلات */
+.drop-zone {
+  background-color: #f4f8ff;
+  border: 2px dashed #a0b5d8;
+  border-radius: 10px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.drop-zone:hover {
+  background-color: #e9f0fc;
+  border-color: #1a3a6c;
+}
+
+.upload-icon {
+  font-size: 40px;
+  color: #1a3a6c;
+  margin-bottom: 15px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.drop-zone:hover .upload-icon {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.drop-zone h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.drop-zone p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.file-types {
+  font-size: 12px;
+  color: #888;
+}
+
+/* إخفاء زر الرفع الافتراضي */
+#file-input {
+  display: none;
+}
+
+/* قائمة الملفات */
+.file-list {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 125px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: 1px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f9fbfd;
+  border: 1px solid #e1e8f0;
+  padding: 2px 5px;
+  border-radius: 8px;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+.file-icon {
+  font-size: 18px;
+}
+
+.file-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 5px;
+  color: #666;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.delete-btn:hover {
+  color: #ff4d4d;
+}
+
+/* الأزرار السفلية */
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn {
+  flex: 1;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background-color: #1c3b6a;
+  color: #ffffff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #132a4d;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: #1c3b6a;
+  border: 2px solid #1c3b6a;
+}
+
+.btn-secondary:hover {
+  background-color: #f4f8ff;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font:
+    bold 40px Arial,
+    Helvetica,
+    sans-serif;
+}
+
+.section2 {
+  width: 100%;
+  height: 15%;
+  background-color: #e1e1e1;
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.section2 .part {
+  display: flex;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.text p {
+  font-size: larger;
+  color: #232324;
+}
+
+.foot {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  border-radius: 30px;
+  background-color: #e1e1e1;
+}
+
+.logo :not(head) {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.links div a {
+  padding: 5px;
+  padding-left: 15px;
+  text-decoration: none;
+  color: #3d3e3e;
+  font:
+    bold 20px Arial,
+    Helvetica,
+    sans-serif;
+}
+
+.links div {
+  display: flex;
+  justify-content: center;
+}
+
+.foot p {
+  font:
+    bolder 25px Arial,
+    Helvetica,
+    sans-serif;
+}
+
+.contener .head p {
+  font:
+    bolder 25px Arial,
+    Helvetica,
+    sans-serif;
+}
